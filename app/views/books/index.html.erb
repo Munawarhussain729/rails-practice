@@ -8,6 +8,17 @@
       <th colspan="3"></th>
     </tr>
   </thead>
+    <% content_for :sidebar do %>
+     <p>This content goes in the div above New Book.</p>
+    <% end %>
+    <% content_for :head do %>
+      <title>A simple page</title>
+    <% end %>
+
+    <p>Hello, Rails!</p>
+
+  
+
 
   <tbody>
     <% @books.each do |book| %>
@@ -23,5 +34,8 @@
 </table>
 
 <br>
-
+<div id="sidebar">
+  <%= yield :sidebar %>
+</div>
+<br>
 <%= link_to "New book", new_book_path %>
