@@ -11,7 +11,8 @@
     <% content_for :sidebar do %>
      <p>This content goes in the div above New Book.</p>
     <% end %>
-    <% content_for :head do %>
+
+    <% content_for :sample_data do %>
       <title>A simple page</title>
     <% end %>
 
@@ -37,5 +38,30 @@
 <div id="sidebar">
   <%= yield :sidebar %>
 </div>
+<div id="sample_data">
+  <%= yield :sample_data%> 
+</div>
+
+<%= form_with url: "/search", method: :get do |form| %>
+  <%= form.label :query, "Search for:" %>
+  <%= form.text_field :query %>
+
+  <%= form.check_box :pet_dog %>
+<%= form.label :pet_dog, "I own a dog" %>
+<%= form.check_box :pet_cat %>
+<%= form.label :pet_cat, "I own a cat" %>
+<%= form.select :city, ["Berlin", "Chicago", "Madrid"] %>
+<%= form.select :city,
+      {
+        "Europe" => [ ["Berlin", "BE"], ["Madrid", "MD"] ],
+        "North America" => [ ["Chicago", "CHI"] ],
+      },
+      selected: "CHI" %>
+<%= select_year 1999, prefix: "party" %>
+
+  <%= form.submit "Search" %>
+<% end %>
+
+
 <br>
 <%= link_to "New book", new_book_path %>
