@@ -3,12 +3,27 @@
 <h1>Users</h1>
 
 <div id="users">
+
+<% p "About to print the user"%>
+<% p @users%>
+
+<% if @users.is_a?(Array) && @users.length > 1%>
   <% @users.each do |user| %>
     <%= render user %>
     <p>
       <%= link_to "Show this user", user %>
     </p>
   <% end %>
+
+<%else%>
+<% p "Printing a single " %>
+<% p @users %>
+ <%= render @users %>
+    <p>
+      <%= link_to "Show this a user", @users %>
+    </p>
+<%end%>
+
 </div>
 
 <%= link_to "New user", new_user_path %>
